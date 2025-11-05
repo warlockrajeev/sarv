@@ -37,6 +37,8 @@ function CloseIcon({ className = "w-6 h-6" }) {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [academicsOpen, setAcademicsOpen] = useState(false);
+  const [mediaOpen, setMediaOpen] = useState(false);
+  const [alumniOpen, setAlumniOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-white/60 backdrop-blur-xl shadow-[0_1px_10px_rgba(0,0,0,0.08)]">
@@ -95,22 +97,45 @@ export default function Navbar() {
         <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ul className="flex overflow-x-auto h-11 items-center text-sm text-white/90 gap-6">
             {[
-              ["About Us", "#about"],
+              ["About Us", "/about"],
               ["Preschool", "#preschool"],
               ["K12", "#k12"],
               ["Academics", "#academics"],
-              ["Soul Science", "#soul-science"],
+              ["Soul Science", "/soul-science"],
               ["LearnLeap", "#learnleap"],
-              ["Special Projects", "#projects"],
-              ["Partner With Us", "#partner"],
+              ["Special Projects", "/special-projects"],
+              ["Partner With Us", "/partner-with-us"],
               ["Media", "#media"],
               ["Alumni", "#alumni"],
-              ["Blogs", "#blogs"],
-              ["Career", "#career"],
+              ["Blogs", "/blogs"],
+              ["Career", "/career"],
             ].map(([label, href]) => (
-              <li key={label}
-                  onMouseEnter={() => label === "Academics" && setAcademicsOpen(true)}
-                  onMouseLeave={() => label === "Academics" && setAcademicsOpen(false)}
+              <li
+                key={label}
+                onMouseEnter={() => {
+                  if (label === "Academics") {
+                    setAcademicsOpen(true);
+                    setMediaOpen(false);
+                    setAlumniOpen(false);
+                  } else if (label === "Media") {
+                    setMediaOpen(true);
+                    setAcademicsOpen(false);
+                    setAlumniOpen(false);
+                  } else if (label === "Alumni") {
+                    setAlumniOpen(true);
+                    setAcademicsOpen(false);
+                    setMediaOpen(false);
+                  } else {
+                    setAcademicsOpen(false);
+                    setMediaOpen(false);
+                    setAlumniOpen(false);
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (label === "Academics") setAcademicsOpen(false);
+                  if (label === "Media") setMediaOpen(false);
+                  if (label === "Alumni") setAlumniOpen(false);
+                }}
               >
                 <Link
                   href={href}
@@ -144,6 +169,75 @@ export default function Navbar() {
                       { label: "Middle Years Curriculum", href: "/academics/middle" },
                       { label: "High School Curriculum", href: "/academics/high-school" },
                       { label: "Teacher Training and Support", href: "/academics/teacher-training" },
+                    ].map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="flex items-center justify-between gap-4 px-5 py-4 hover:bg-amber-50 transition"
+                      >
+                        <span className="text-stone-800 text-sm font-medium">{item.label}</span>
+                        <span className="text-amber-700">→</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Media Dropdown Overlay */}
+        <AnimatePresence>
+          {mediaOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              className="absolute left-0 right-0 top-full z-50"
+              onMouseEnter={() => setMediaOpen(true)}
+              onMouseLeave={() => setMediaOpen(false)}
+            >
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="mt-2 rounded-xl bg-white shadow-xl ring-1 ring-black/5 overflow-hidden">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                    {[ 
+                      { label: "Awards & Certificates", href: "/media/awards-certificates" },
+                      { label: "News & Events", href: "/media/news-events" },
+                      { label: "Back To School", href: "/media/back-to-school" },
+                    ].map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="flex items-center justify-between gap-4 px-5 py-4 hover:bg-amber-50 transition"
+                      >
+                        <span className="text-stone-800 text-sm font-medium">{item.label}</span>
+                        <span className="text-amber-700">→</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Alumni Dropdown Overlay */}
+        <AnimatePresence>
+          {alumniOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              className="absolute left-0 right-0 top-full z-50"
+              onMouseEnter={() => setAlumniOpen(true)}
+              onMouseLeave={() => setAlumniOpen(false)}
+            >
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="mt-2 rounded-xl bg-white shadow-xl ring-1 ring-black/5 overflow-hidden">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                    {[ 
+                      { label: "Alumni Guidance", href: "/alumni/guidance" },
+                      { label: "Success Stories", href: "/alumni/success-stories" },
                     ].map((item) => (
                       <Link
                         key={item.label}
@@ -217,18 +311,18 @@ export default function Navbar() {
 
               <div className="grid grid-cols-2 gap-2 text-sm">
                 {[
-                  ["About Us", "#about"],
+                  ["About Us", "/about"],
                   ["Preschool", "#preschool"],
                   ["K12", "#k12"],
                   ["Academics", "#academics"],
-                  ["Soul Science", "#soul-science"],
+                  ["Soul Science", "/soul-science"],
                   ["LearnLeap", "#learnleap"],
-                  ["Special Projects", "#projects"],
-                  ["Partner With Us", "#partner"],
+                  ["Special Projects", "/special-projects"],
+                  ["Partner With Us", "/partner-with-us"],
                   ["Media", "#media"],
                   ["Alumni", "#alumni"],
-                  ["Blogs", "#blogs"],
-                  ["Career", "#career"],
+                  ["Blogs", "/blogs"],
+                  ["Career", "/career"],
                 ].map(([label, href]) => (
                   <Link
                     key={label}
