@@ -36,6 +36,7 @@ function CloseIcon({ className = "w-6 h-6" }) {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [academicsOpen, setAcademicsOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-white/60 backdrop-blur-xl shadow-[0_1px_10px_rgba(0,0,0,0.08)]">
@@ -53,19 +54,19 @@ export default function Navbar() {
           {/* Desktop Buttons */}
           <div className="hidden md:flex items-center gap-4">
             <Link
-              href="#franchises"
+              href="franchise-preschool"
               className="px-5 py-2.5 rounded-md bg-gradient-to-r from-rose-900 to-amber-700 text-white font-medium hover:opacity-90 transition-all duration-200 shadow-sm"
             >
               Franchise – Preschool
             </Link>
             <Link
-              href="#franchises"
+              href="/franchise-k12"
               className="px-5 py-2.5 rounded-md border border-amber-700 text-amber-800 font-medium hover:bg-amber-700 hover:text-white transition-all duration-200"
             >
               Franchise – K12
             </Link>
             <Link
-              href="#transformation"
+              href="/franchise-k12#transformation"
               className="px-5 py-2.5 rounded-md border border-rose-900 text-rose-900 font-medium hover:bg-rose-900 hover:text-white transition-all duration-200"
             >
               School Transformation
@@ -84,7 +85,7 @@ export default function Navbar() {
       </div>
 
       {/* Secondary Navigation */}
-      <div className="border-t border-amber-700 bg-gradient-to-r from-amber-700 to-rose-800">
+      <div className="border-t border-amber-700 bg-gradient-to-r from-amber-700 to-rose-800 relative">
         <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ul className="flex overflow-x-auto h-11 items-center text-sm text-white/90 gap-6">
             {[
@@ -101,7 +102,10 @@ export default function Navbar() {
               ["Blogs", "#blogs"],
               ["Career", "#career"],
             ].map(([label, href]) => (
-              <li key={label}>
+              <li key={label}
+                  onMouseEnter={() => label === "Academics" && setAcademicsOpen(true)}
+                  onMouseLeave={() => label === "Academics" && setAcademicsOpen(false)}
+              >
                 <Link
                   href={href}
                   className="relative px-1 hover:text-white transition group"
@@ -113,6 +117,43 @@ export default function Navbar() {
             ))}
           </ul>
         </nav>
+
+        {/* Academics Dropdown Overlay */}
+        <AnimatePresence>
+          {academicsOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              className="absolute left-0 right-0 top-full z-50"
+              onMouseEnter={() => setAcademicsOpen(true)}
+              onMouseLeave={() => setAcademicsOpen(false)}
+            >
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="mt-2 rounded-xl bg-white shadow-xl ring-1 ring-black/5 overflow-hidden">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                    {[ 
+                      { label: "Pre Primary Years Curriculum", href: "/academics/pre-primary" },
+                      { label: "Primary Years Curriculum", href: "/academics/primary" },
+                      { label: "Middle Years Curriculum", href: "/academics/middle" },
+                      { label: "High School Curriculum", href: "/academics/high-school" },
+                      { label: "Teacher Training and Support", href: "/academics/teacher-training" },
+                    ].map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="flex items-center justify-between gap-4 px-5 py-4 hover:bg-amber-50 transition"
+                      >
+                        <span className="text-stone-800 text-sm font-medium">{item.label}</span>
+                        <span className="text-amber-700">→</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Scrolling Ticker */}

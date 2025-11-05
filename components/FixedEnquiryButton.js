@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { X, MessageCircle, Loader2 } from "lucide-react";
 
 function EnquiryModal({ isOpen, onClose }) {
@@ -227,19 +227,27 @@ function EnquiryModal({ isOpen, onClose }) {
   );
 }
 
-export default function FixedEnquiryButton() {
+export default function FixedEnquiryButton({ hideFloatingButton = false }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const openHandler = () => setIsOpen(true);
+    window.addEventListener("open-enquiry", openHandler);
+    return () => window.removeEventListener("open-enquiry", openHandler);
+  }, []);
 
   return (
     <>
-      <button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-linear-to-r from-rose-900 to-amber-800 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-        aria-label="Open enquiry form"
-      >
-        <MessageCircle size={20} />
-        <span className="font-medium">Enquiry</span>
-      </button>
+      {!hideFloatingButton && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-linear-to-r from-rose-900 to-amber-800 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+          aria-label="Open enquiry form"
+        >
+          <MessageCircle size={20} />
+          <span className="font-medium">Enquiry</span>
+        </button>
+      )}
       <EnquiryModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
