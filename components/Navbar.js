@@ -71,6 +71,12 @@ export default function Navbar() {
             >
               School Transformation
             </Link>
+            <Link
+              href="/360-edtech"
+              className="px-5 py-2.5 rounded-md border border-amber-700 text-amber-800 font-medium hover:bg-amber-700 hover:text-white transition-all duration-200"
+            >
+              360 Ed-Tech
+            </Link>
           </div>
 
           {/* Mobile Button */}
@@ -199,6 +205,13 @@ export default function Navbar() {
                   onClick={() => setOpen(false)}
                 >
                   School Transformation
+                </Link>
+                <Link
+                  href="/360-edtech"
+                  className="rounded-md border border-amber-700 text-amber-800 px-5 py-3 text-center font-medium"
+                  onClick={() => setOpen(false)}
+                >
+                  360 Ed-Tech
                 </Link>
               </div>
 
