@@ -8,6 +8,7 @@ const services = [
   {
     title: "Innovation & Learning Programs",
     subtitle: "Innovation at the core of education",
+    image: "https://images.unsplash.com/photo-1560785496-3c9d27877182?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     points: [
       "Project-based STEM and robotics programs",
       "Exposure to modern tools and competitions",
@@ -17,6 +18,7 @@ const services = [
   {
     title: "Curriculum & Teacher Training",
     subtitle: "International-standard classroom systems",
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     points: [
       "Structured curriculum and assessments",
       "Teacher enablement and ongoing coaching",
@@ -26,6 +28,7 @@ const services = [
   {
     title: "Interactive Learning Systems",
     subtitle: "Educational games and active learning",
+    image: "https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     points: [
       "Math and English concept mastery",
       "Screen-integrated movement-based activities",
@@ -35,6 +38,7 @@ const services = [
   {
     title: "Lab Setup & Solutions",
     subtitle: "Where education meets innovation",
+    image: "https://images.unsplash.com/photo-1533222481259-ce20eda1e20b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     points: [
       "Tailored STEAM and innovation labs",
       "Advanced technology to enhance learning",
@@ -105,29 +109,48 @@ export default function OurServices() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -25, scale: 0.97 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="text-left mx-auto max-w-3xl bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-10 border border-amber-100"
+              className="text-left mx-auto max-w-4xl bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 border border-amber-100"
             >
-              <h3 className="text-2xl font-semibold text-gray-900">
-                {services[active].title}
-              </h3>
-              <p className="mt-2 text-base text-gray-600">
-                {services[active].subtitle}
-              </p>
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                {/* Image */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="rounded-2xl overflow-hidden shadow-lg"
+                >
+                  <img
+                    src={services[active].image}
+                    alt={services[active].title}
+                    className="w-full h-64 object-cover"
+                  />
+                </motion.div>
 
-              <ul className="mt-6 space-y-3">
-                {services[active].points.map((point, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-3 text-base leading-relaxed"
-                  >
-                    <CheckCircle
-                      size={20}
-                      className="text-amber-700 mt-1 flex-shrink-0"
-                    />
-                    <span className="text-gray-800">{point}</span>
-                  </li>
-                ))}
-              </ul>
+                {/* Text Content */}
+                <div>
+                  <h3 className="text-2xl font-semibold text-gray-900">
+                    {services[active].title}
+                  </h3>
+                  <p className="mt-2 text-base text-gray-600">
+                    {services[active].subtitle}
+                  </p>
+
+                  <ul className="mt-6 space-y-3">
+                    {services[active].points.map((point, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 text-base leading-relaxed"
+                      >
+                        <CheckCircle
+                          size={20}
+                          className="text-amber-700 mt-1 flex-shrink-0"
+                        />
+                        <span className="text-gray-800">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>

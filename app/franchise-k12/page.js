@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 
@@ -89,11 +89,11 @@ export default function FranchiseK12Page() {
   const requirements = [
     {
       title: "Space Required",
-      value: "Min 2 acres as per CBSE by-laws",
+      value: "Min 2 acres as per CBSE/ICSE by-laws",
     },
     {
       title: "Total Project Cost*",
-      value: "INR 10-12 Crs. (Including the Franchise Fee)",
+      value: "INR 10-25 Crs. (Including the Franchise Fee)",
     },
     {
       title: "*Return on Investment",
@@ -109,7 +109,7 @@ export default function FranchiseK12Page() {
     },
     {
       title: "Age Group",
-      value: "As Per CBSE by Laws",
+      value: "As Per CBSE/ICSE by Laws",
     },
   ];
 
@@ -372,92 +372,436 @@ export default function FranchiseK12Page() {
         </div>
       </section>
 
-      {/* WHY SARV SAMAGRA SECTION */}
-      <section className="py-16 bg-gradient-to-b from-white via-orange-50 to-white overflow-x-hidden">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold text-[#f26522] text-center mb-12"
-          >
-            Why Sarv Samagra?
-          </motion.h2>
-
-          <div className="grid md:grid-cols-7 gap-6">
+      {/* SCHOOL TRANSFORMATION SHOWCASE */}
+      {showTransformationOnly && (
+        <section className="py-20 bg-gradient-to-b from-white via-orange-50 to-white overflow-x-hidden">
+          <div className="max-w-7xl mx-auto px-6">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="md:col-span-2 flex flex-col space-y-3"
+              transition={{ duration: 0.8 }}
+              className="text-center mb-16"
             >
-              {Object.keys(categories).map((category, index) => (
-                <motion.button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  whileHover={{ scale: 1.03, x: 5 }}
-                  whileTap={{ scale: 0.98 }}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`text-left px-5 py-3 font-semibold rounded-lg transition-all duration-300 shadow-sm ${
-                    activeCategory === category
-                      ? "bg-gradient-to-r from-rose-900 to-amber-700 text-white shadow-lg transform scale-105"
-                      : "bg-white text-gray-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-amber-50 hover:shadow-md border border-gray-200"
-                  }`}
-                >
-                  {category}
-                </motion.button>
-              ))}
+              <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-gradient-to-r from-rose-900 to-amber-700 text-white shadow-md">
+                School Transformation
+              </span>
+              <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mt-5">
+                Before & After: Real
+                <span className="bg-gradient-to-r from-rose-800 to-amber-700 bg-clip-text text-transparent">
+                  {" "}Transformation Stories
+                </span>
+              </h2>
+              <p className="mt-4 text-xl text-stone-700 max-w-3xl mx-auto">
+                See how schools across India have been transformed through our comprehensive franchise model
+              </p>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="md:col-span-5 bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100 p-8 rounded-2xl shadow-xl border border-orange-200"
-            >
-              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {categories[activeCategory].map((item, i) => (
-                  <motion.div
-                    key={`${activeCategory}-${i}`}
-                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{
-                      delay: i * 0.08,
-                      type: "spring",
-                      stiffness: 100,
-                      damping: 10
-                    }}
-                    whileHover={{
-                      scale: 1.05,
-                      y: -5,
-                      boxShadow: "0 10px 25px rgba(242, 101, 34, 0.2)"
-                    }}
-                    className="bg-white shadow-md hover:shadow-xl p-5 rounded-xl text-sm font-medium transition-all duration-300 border border-orange-100 hover:border-orange-300 cursor-pointer group"
-                  >
-                    <div className="flex items-center gap-2">
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: i * 0.08 + 0.2 }}
-                        className="w-2 h-2 rounded-full bg-gradient-to-r from-rose-900 to-amber-700 group-hover:scale-150 transition-transform"
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* School 1 */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+                className="bg-white rounded-2xl shadow-xl overflow-hidden border border-orange-100"
+              >
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-[#f26522] mb-4">Delhi Public School</h3>
+                  <p className="text-stone-700 mb-6">A traditional school that embraced modern education technology</p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 p-6 pt-0">
+                  {/* Before */}
+                  <div className="text-center">
+                    <div className="relative mb-3">
+                      <img
+                        src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                        alt="School before transformation"
+                        className="w-full h-32 object-cover rounded-lg"
                       />
-                      <span className="text-gray-800 group-hover:text-[#f26522] transition-colors">
-                        {item}
-                      </span>
+                      <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                        BEFORE
+                      </div>
                     </div>
-                  </motion.div>
-                ))}
-              </div>
+                    <ul className="text-xs text-stone-600 space-y-1">
+                      <li>• Traditional classrooms</li>
+                      <li>• Limited technology</li>
+                      <li>• Basic learning methods</li>
+                    </ul>
+                  </div>
+
+                  {/* After */}
+                  <div className="text-center">
+                    <div className="relative mb-3">
+                      <img
+                        src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                        alt="School after transformation"
+                        className="w-full h-32 object-cover rounded-lg"
+                      />
+                      <div className="absolute -top-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                        AFTER
+                      </div>
+                    </div>
+                    <ul className="text-xs text-stone-600 space-y-1">
+                      <li>• Smart classrooms</li>
+                      <li>• STEM & robotics labs</li>
+                      <li>• Digital learning tools</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="px-6 pb-6">
+                  <div className="bg-gradient-to-r from-amber-50 to-orange-50 p-4 rounded-lg">
+                    <p className="text-sm text-stone-700 italic">
+                      "Student engagement increased by 300% and academic performance improved significantly."
+                    </p>
+                    <p className="text-xs text-stone-500 mt-2">- Principal, Delhi Public School</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* School 2 */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="bg-white rounded-2xl shadow-xl overflow-hidden border border-orange-100"
+              >
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-[#f26522] mb-4">Mumbai International School</h3>
+                  <p className="text-stone-700 mb-6">From conventional teaching to innovative learning spaces</p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 p-6 pt-0">
+                  {/* Before */}
+                  <div className="text-center">
+                    <div className="relative mb-3">
+                      <img
+                        src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                        alt="School before transformation"
+                        className="w-full h-32 object-cover rounded-lg"
+                      />
+                      <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                        BEFORE
+                      </div>
+                    </div>
+                    <ul className="text-xs text-stone-600 space-y-1">
+                      <li>• Chalkboard teaching</li>
+                      <li>• Limited resources</li>
+                      <li>• Traditional assessments</li>
+                    </ul>
+                  </div>
+
+                  {/* After */}
+                  <div className="text-center">
+                    <div className="relative mb-3">
+                      <img
+                        src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                        alt="School after transformation"
+                        className="w-full h-32 object-cover rounded-lg"
+                      />
+                      <div className="absolute -top-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                        AFTER
+                      </div>
+                    </div>
+                    <ul className="text-xs text-stone-600 space-y-1">
+                      <li>• Interactive whiteboards</li>
+                      <li>• AI-powered learning</li>
+                      <li>• Project-based learning</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="px-6 pb-6">
+                  <div className="bg-gradient-to-r from-amber-50 to-orange-50 p-4 rounded-lg">
+                    <p className="text-sm text-stone-700 italic">
+                      "Our teachers now have access to cutting-edge tools that make learning engaging and effective."
+                    </p>
+                    <p className="text-xs text-stone-500 mt-2">- Director, Mumbai International School</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* School 3 */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+                className="bg-white rounded-2xl shadow-xl overflow-hidden border border-orange-100"
+              >
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-[#f26522] mb-4">Chennai Progressive School</h3>
+                  <p className="text-stone-700 mb-6">Building the future of education through comprehensive transformation</p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 p-6 pt-0">
+                  {/* Before */}
+                  <div className="text-center">
+                    <div className="relative mb-3">
+                      <img
+                        src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                        alt="School before transformation"
+                        className="w-full h-32 object-cover rounded-lg"
+                      />
+                      <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                        BEFORE
+                      </div>
+                    </div>
+                    <ul className="text-xs text-stone-600 space-y-1">
+                      <li>• Basic infrastructure</li>
+                      <li>• Limited extracurricular</li>
+                      <li>• Conventional methods</li>
+                    </ul>
+                  </div>
+
+                  {/* After */}
+                  <div className="text-center">
+                    <div className="relative mb-3">
+                      <img
+                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                        alt="School after transformation"
+                        className="w-full h-32 object-cover rounded-lg"
+                      />
+                      <div className="absolute -top-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                        AFTER
+                      </div>
+                    </div>
+                    <ul className="text-xs text-stone-600 space-y-1">
+                      <li>• Modern campus</li>
+                      <li>• Sports & arts facilities</li>
+                      <li>• Holistic development</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="px-6 pb-6">
+                  <div className="bg-gradient-to-r from-amber-50 to-orange-50 p-4 rounded-lg">
+                    <p className="text-sm text-stone-700 italic">
+                      "The transformation has not only improved our infrastructure but also our teaching methodology."
+                    </p>
+                    <p className="text-xs text-stone-500 mt-2">- Chairman, Chennai Progressive School</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Call to Action */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              className="text-center mt-16"
+            >
+              <h3 className="text-2xl font-bold text-stone-900 mb-4">
+                Ready to Transform Your School?
+              </h3>
+              <p className="text-stone-700 mb-8 max-w-2xl mx-auto">
+                Join the growing network of successful schools that have embraced the future of education
+              </p>
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="#top"
+                className="inline-block px-8 py-4 bg-gradient-to-r from-rose-900 to-amber-700 text-white font-bold rounded-xl hover:shadow-2xl transition-all duration-300 shadow-lg"
+              >
+                Start Your Transformation
+              </motion.a>
             </motion.div>
           </div>
+        </section>
+      )}
+
+      {/* WHY SARV SAMAGRA SECTION */}
+      {!showTransformationOnly && (
+      <section className="py-20 bg-gradient-to-br from-white via-orange-50/30 to-rose-50/30">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-gradient-to-r from-rose-900 to-amber-700 bg-clip-text">
+              Why Sarv Samagra Techno World School?
+            </h2>
+            <p className="mt-4 text-xl text-stone-700 max-w-3xl mx-auto">
+              Discover the comprehensive support system that transforms your K12 school into an educational leader
+            </p>
+          </motion.div>
+
+          {/* Category Navigation */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="flex flex-wrap justify-center gap-4 mb-12"
+          >
+            {Object.keys(categories).map((key) => (
+              <motion.button
+                key={key}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setActiveCategory(key)}
+                className={`px-6 py-3 font-semibold rounded-full transition-all duration-300 shadow-md ${
+                  activeCategory === key
+                    ? "bg-gradient-to-r from-rose-900 to-amber-700 text-white shadow-lg"
+                    : "bg-white text-stone-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-amber-50 hover:shadow-lg border border-orange-200"
+                }`}
+              >
+                {key}
+              </motion.button>
+            ))}
+          </motion.div>
+
+          {/* Main Content Display */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCategory}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.5 }}
+              className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8"
+            >
+              {categories[activeCategory].map((item, i) => (
+                <motion.div
+                  key={`${activeCategory}-${i}`}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1, duration: 0.6 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden border border-orange-100"
+                >
+                  {/* Large Prominent Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={
+                        activeCategory === 'INFRASTRUCTURE' ? (
+                          i === 0 ? 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 1 ? 'https://images.unsplash.com/photo-1503387837-b154d5074bd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 2 ? 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 3 ? 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                        ) :
+                        activeCategory === 'ACADEMIC OFFERINGS' ? (
+                          i === 0 ? 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 1 ? 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 2 ? 'https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 3 ? 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                        ) :
+                        activeCategory === 'TEACHER TRAINING & SUPPORT' ? (
+                          i === 0 ? 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 1 ? 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 2 ? 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 3 ? 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                        ) :
+                        activeCategory === 'HR & FINANCE' ? (
+                          i === 0 ? 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 1 ? 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 2 ? 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 3 ? 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                        ) :
+                        activeCategory === 'OPERATION SUPPORT' ? (
+                          i === 0 ? 'https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 1 ? 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 2 ? 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 3 ? 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                        ) :
+                        activeCategory === 'BRANDING & MARKETING' ? (
+                          i === 0 ? 'https://images.unsplash.com/photo-1542744094-3a31f272c490?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 1 ? 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 2 ? 'https://images.unsplash.com/photo-1562577309-2592ab84b1bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 3 ? 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          'https://images.unsplash.com/photo-1542744094-3a31f272c490?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                        ) :
+                        'https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                      }
+                      alt={item}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    {/* Number badge */}
+                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center shadow-lg">
+                      <span className="text-stone-800 font-bold text-sm">{i + 1}</span>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-lg font-bold text-stone-900 mb-3 group-hover:text-rose-900 transition-colors">
+                      {item}
+                    </h3>
+
+                    {/* Visual indicators */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-sm text-stone-600">Included in your franchise package</span>
+                    </div>
+
+                    {/* Supporting text with icons */}
+                    <div className="space-y-2 text-sm text-stone-700">
+                      {activeCategory === 'INFRASTRUCTURE' && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-amber-600">🏗️</span>
+                          <span>Complete setup assistance</span>
+                        </div>
+                      )}
+                      {activeCategory === 'ACADEMIC OFFERINGS' && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-blue-600">📚</span>
+                          <span>Comprehensive curriculum</span>
+                        </div>
+                      )}
+                      {activeCategory === 'TEACHER TRAINING & SUPPORT' && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-purple-600">👨‍🏫</span>
+                          <span>Professional development</span>
+                        </div>
+                      )}
+                      {activeCategory === 'HR & FINANCE' && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-green-600">💼</span>
+                          <span>Business management support</span>
+                        </div>
+                      )}
+                      {activeCategory === 'OPERATION SUPPORT' && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-indigo-600">⚙️</span>
+                          <span>Ongoing operational guidance</span>
+                        </div>
+                      )}
+                      {activeCategory === 'BRANDING & MARKETING' && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-pink-600">📢</span>
+                          <span>Brand & marketing support</span>
+                        </div>
+                      )}
+                      {activeCategory === 'IT SUPPORT' && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-cyan-600">💻</span>
+                          <span>Technology solutions</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
+      )}
 
       {/* FRANCHISE REQUIREMENTS */}
       {!showTransformationOnly && (
@@ -744,7 +1088,7 @@ export default function FranchiseK12Page() {
               },
               {
                 question: "What is the minimum space required?",
-                answer: "A minimum of 2 acres is required as per CBSE by-laws for establishing a K12 school."
+                answer: "A minimum of 2 acres is required as per CBSE/ICSE by-laws for establishing a K12 school."
               },
               {
                 question: "What is the teacher to student ratio?",

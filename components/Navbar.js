@@ -40,6 +40,11 @@ export default function Navbar() {
   const [mediaOpen, setMediaOpen] = useState(false);
   const [alumniOpen, setAlumniOpen] = useState(false);
 
+  // Function to check if Franchise K12 is active (always returns false since we removed active highlighting)
+  const isFranchiseK12Active = () => {
+    return false;
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-white/60 backdrop-blur-xl shadow-[0_1px_10px_rgba(0,0,0,0.08)]">
       {/* Top Section */}
@@ -93,7 +98,7 @@ export default function Navbar() {
       </div>
 
       {/* Secondary Navigation */}
-      <div className="border-t border-amber-700 bg-gradient-to-r from-amber-700 to-rose-800 relative">
+      <div className="hidden md:block border-t border-amber-700 bg-gradient-to-r from-amber-700 to-rose-800 relative">
         <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ul className="flex overflow-x-auto h-11 items-center text-sm text-white/90 gap-6">
             {[
@@ -280,21 +285,25 @@ export default function Navbar() {
             <div className="px-4 py-4 space-y-4">
               <div className="flex flex-col gap-3">
                 <Link
-                  href="#franchises"
+                  href="/franchise-preschool"
                   className="rounded-md bg-gradient-to-r from-rose-900 to-amber-700 text-white px-5 py-3 text-center font-medium"
                   onClick={() => setOpen(false)}
                 >
                   Franchise – Preschool
                 </Link>
                 <Link
-                  href="#franchises"
-                  className="rounded-md border border-amber-700 text-amber-800 px-5 py-3 text-center font-medium"
+                  href="/franchise-k12"
+                  className={`rounded-md px-5 py-3 text-center font-medium ${
+                    isFranchiseK12Active()
+                      ? "bg-gradient-to-r from-rose-900 to-amber-700 text-white"
+                      : "border border-amber-700 text-amber-800"
+                  }`}
                   onClick={() => setOpen(false)}
                 >
                   Franchise – K12
                 </Link>
                 <Link
-                  href="#transformation"
+                  href="/franchise-k12#transformation"
                   className="rounded-md border border-rose-900 text-rose-900 px-5 py-3 text-center font-medium"
                   onClick={() => setOpen(false)}
                 >

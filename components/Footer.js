@@ -80,21 +80,21 @@ export default function Footer() {
               <h3 className="font-semibold text-white mb-3">Useful Links</h3>
               <ul className="space-y-2 text-amber-100 text-sm">
                 {[
-                  "Home",
-                  "About Us",
-                  "Franchise With Us",
-                  "Alumni Area",
-                  "Contact Us",
-                  "Media",
-                  "Career",
-                  "Blogs",
+                  { label: "Home", href: "/" },
+                  { label: "About Us", href: "/about" },
+                  { label: "Franchise With Us", href: "/franchise-preschool" },
+                  { label: "Alumni Area", href: "/alumni/guidance" },
+                  { label: "Contact Us", href: "/contact" },
+                  { label: "Media", href: "/media/awards-certificates" },
+                  { label: "Career", href: "/career" },
+                  { label: "Blogs", href: "/blogs" },
                 ].map((item, i) => (
                   <li key={i}>
                     <Link
-                      href="#"
+                      href={item.href}
                       className="hover:text-amber-300 transition-colors"
                     >
-                      {item}
+                      {item.label}
                     </Link>
                   </li>
                 ))}
@@ -106,21 +106,20 @@ export default function Footer() {
               <h3 className="font-semibold text-white mb-3">Other Links</h3>
               <ul className="space-y-2 text-amber-100 text-sm">
                 {[
-                  "Learnleap",
-                  "Franchise Preschool",
-                  "Franchise K12",
-                  "School Transformation",
-                  "Soul Science",
-                  "Special Projects",
-                  "Partner With Us",
-                  "Privacy Policy",
+                  { label: "Franchise Preschool", href: "/franchise-preschool" },
+                  { label: "Franchise K12", href: "/franchise-k12" },
+                  { label: "School Transformation", href: "/franchise-k12#transformation" },
+                  { label: "Soul Science", href: "/soul-science" },
+                  { label: "Special Projects", href: "/special-projects" },
+                  { label: "Partner With Us", href: "/partner-with-us" },
+                  { label: "Privacy Policy", href: "/privacy-policy" },
                 ].map((item, i) => (
                   <li key={i}>
                     <Link
-                      href="#"
+                      href={item.href}
                       className="hover:text-amber-300 transition-colors"
                     >
-                      {item}
+                      {item.label}
                     </Link>
                   </li>
                 ))}

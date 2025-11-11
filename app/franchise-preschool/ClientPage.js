@@ -100,9 +100,9 @@ export default function ClientFranchisePreschoolPage() {
         <div className="absolute -top-16 -right-16 h-72 w-72 rounded-full bg-rose-200 opacity-50 blur-3xl" />
         <div className="absolute bottom-0 left-1/4 h-32 w-32 bg-amber-200 rounded-full blur-3xl opacity-50" />
 
-        <div className="relative z-10 text-center max-w-3xl mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-gradient-to-r from-rose-900 to-amber-700 bg-clip-text leading-tight">
-            Partner with Sarv Edu Care
+        <div className="relative z-10 text-center max-w-3xl mx-auto px-3">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-gradient-to-r from-rose-900 to-amber-700 bg-clip-text leading-tight whitespace-nowrap">
+            Partner with Samagra Balvatika
           </h1>
           <p className="mt-4 text-stone-700 text-lg">
             Join India’s fastest-growing preschool network and shape the future of education.
@@ -119,56 +119,184 @@ export default function ClientFranchisePreschoolPage() {
       </section>
 
       {/* ---------------- WHY CHOOSE SECTION ---------------- */}
-      <section className="text-center py-16 bg-white shadow-inner">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-transparent bg-gradient-to-r from-rose-900 to-amber-700 bg-clip-text">
-          Why Choose Sarv Edu Care for Your Preschool Franchise?
-        </h2>
+      <section className="py-20 bg-gradient-to-br from-white via-amber-50/30 to-rose-50/30">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-gradient-to-r from-rose-900 to-amber-700 bg-clip-text">
+              Why Choose Samagra Balvatika for Your Preschool Franchise?
+            </h2>
+            <p className="mt-4 text-xl text-stone-700 max-w-3xl mx-auto">
+              See the comprehensive support system that transforms your preschool into a success story
+            </p>
+          </motion.div>
 
-        <div className="max-w-7xl mx-auto mt-12 grid md:grid-cols-7 gap-6 px-6">
-          {/* LEFT SIDE BUTTONS */}
-          <div className="md:col-span-2 flex flex-col space-y-3">
+          {/* Category Navigation */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="flex flex-wrap justify-center gap-4 mb-12"
+          >
             {Object.keys(data).map((key) => (
               <motion.button
                 key={key}
-                whileHover={{ scale: 1.03 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveSection(key)}
-                className={`text-left px-5 py-3 font-semibold rounded-lg transition-all duration-300 shadow-sm border ${
+                className={`px-6 py-3 font-semibold rounded-full transition-all duration-300 shadow-md ${
                   activeSection === key
-                    ? "bg-gradient-to-r from-rose-900 to-amber-700 text-white border-transparent"
-                    : "bg-stone-50 border-stone-200 text-stone-800 hover:bg-amber-50 hover:border-amber-400"
+                    ? "bg-gradient-to-r from-rose-900 to-amber-700 text-white shadow-lg"
+                    : "bg-white text-stone-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-amber-50 hover:shadow-lg border border-orange-200"
                 }`}
               >
                 {key}
               </motion.button>
             ))}
-          </div>
+          </motion.div>
 
-          {/* RIGHT SIDE CONTENT */}
-          <div className="md:col-span-5 bg-gradient-to-br from-amber-50 via-white to-rose-50 p-8 rounded-xl shadow-lg">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeSection}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="grid sm:grid-cols-2 md:grid-cols-3 gap-5"
-              >
-                {data[activeSection].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.05, rotate: [0, 1, -1, 0] }}
-                    className="bg-white shadow-md border border-amber-100 hover:border-amber-300 p-5 rounded-lg text-sm font-medium text-stone-700 transition-all"
-                  >
-                    <span className="block text-amber-800 font-semibold mb-1">
-                      {i + 1}.
-                    </span>
-                    {item}
-                  </motion.div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
-          </div>
+          {/* Main Content Display */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeSection}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.5 }}
+              className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8"
+            >
+              {data[activeSection].map((item, i) => (
+                <motion.div
+                  key={`${activeSection}-${i}`}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1, duration: 0.6 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden border border-orange-100"
+                >
+                  {/* Large Prominent Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={
+                        activeSection === 'INFRASTRUCTURE' ? (
+                          i === 0 ? 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 1 ? 'https://images.unsplash.com/photo-1503387837-b154d5074bd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 2 ? 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 3 ? 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                        ) :
+                        activeSection === 'ACADEMIC OFFERINGS' ? (
+                          i === 0 ? 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 1 ? 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 2 ? 'https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 3 ? 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                        ) :
+                        activeSection === 'TEACHER TRAINING & SUPPORT' ? (
+                          i === 0 ? 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 1 ? 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 2 ? 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 3 ? 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                        ) :
+                        activeSection === 'HR & FINANCE' ? (
+                          i === 0 ? 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 1 ? 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 2 ? 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 3 ? 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                        ) :
+                        activeSection === 'OPERATION SUPPORT' ? (
+                          i === 0 ? 'https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 1 ? 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 2 ? 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 3 ? 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                        ) :
+                        activeSection === 'BRANDING & MARKETING' ? (
+                          i === 0 ? 'https://images.unsplash.com/photo-1542744094-3a31f272c490?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 1 ? 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 2 ? 'https://images.unsplash.com/photo-1562577309-2592ab84b1bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          i === 3 ? 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                          'https://images.unsplash.com/photo-1542744094-3a31f272c490?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                        ) :
+                        'https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                      }
+                      alt={item}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    {/* Number badge */}
+                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center shadow-lg">
+                      <span className="text-stone-800 font-bold text-sm">{i + 1}</span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="text-lg font-bold text-stone-900 mb-3 group-hover:text-rose-900 transition-colors">
+                      {item}
+                    </h3>
+
+                    {/* Visual indicators */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-sm text-stone-600">Included in your franchise package</span>
+                    </div>
+
+                    {/* Supporting text with icons */}
+                    <div className="space-y-2 text-sm text-stone-700">
+                      {activeSection === 'INFRASTRUCTURE' && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-amber-600">🏗️</span>
+                          <span>Complete setup assistance</span>
+                        </div>
+                      )}
+                      {activeSection === 'ACADEMIC OFFERINGS' && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-blue-600">📚</span>
+                          <span>NEP 2020 aligned curriculum</span>
+                        </div>
+                      )}
+                      {activeSection === 'TEACHER TRAINING & SUPPORT' && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-purple-600">👩‍🏫</span>
+                          <span>Certified training programs</span>
+                        </div>
+                      )}
+                      {activeSection === 'HR & FINANCE' && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-green-600">💼</span>
+                          <span>Complete business support</span>
+                        </div>
+                      )}
+                      {activeSection === 'OPERATION SUPPORT' && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-indigo-600">⚙️</span>
+                          <span>Ongoing operational guidance</span>
+                        </div>
+                      )}
+                      {activeSection === 'BRANDING & MARKETING' && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-pink-600">📢</span>
+                          <span>Marketing & brand support</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
 
@@ -182,40 +310,132 @@ export default function ClientFranchisePreschoolPage() {
             <p className="mt-3 text-stone-600">A Strong & Sure Start</p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <motion.div whileHover={{ y: -4 }} className="relative rounded-2xl border border-amber-200 bg-white p-6 shadow-sm overflow-hidden">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <motion.div whileHover={{ y: -8, scale: 1.02 }} className="group relative rounded-2xl border border-amber-200 bg-white shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
               <div className="absolute -top-6 -right-6 h-20 w-20 bg-amber-200/40 rounded-full blur-2xl" />
-              <div className="text-3xl">📐</div>
-              <h3 className="mt-3 text-stone-900 font-semibold">Space Required</h3>
-              <p className="mt-1 text-stone-700 text-sm">1500 - 2000 sq.ft</p>
+
+              {/* Large Image Section */}
+              <div className="relative h-32 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                  alt="Space Required - Modern preschool facility"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1">
+                  <span className="text-stone-800 font-semibold text-sm">Space Planning</span>
+                </div>
+              </div>
+
+              {/* Content Section */}
+              <div className="p-6">
+                <h3 className="text-lg font-bold text-stone-900 mb-4 group-hover:text-rose-900 transition-colors">Space Required</h3>
+                <div className="space-y-3">
+                  <div className="bg-gradient-to-r from-amber-50 to-orange-50 p-3 rounded-lg">
+                    <p className="text-stone-700 font-medium text-sm">1500 - 2000 sq.ft</p>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <span className="text-stone-500 text-sm font-medium">OR</span>
+                  </div>
+                  <div className="bg-gradient-to-r from-rose-50 to-pink-50 p-3 rounded-lg">
+                    <p className="text-stone-700 font-medium text-sm">2000 - 5000+ sq.ft</p>
+                  </div>
+                </div>
+              </div>
             </motion.div>
 
-            <motion.div whileHover={{ y: -4 }} className="relative rounded-2xl border border-rose-200 bg-white p-6 shadow-sm overflow-hidden">
+            <motion.div whileHover={{ y: -8, scale: 1.02 }} className="group relative rounded-2xl border border-rose-200 bg-white shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
               <div className="absolute -top-6 -right-6 h-20 w-20 bg-rose-200/40 rounded-full blur-2xl" />
-              <div className="text-3xl">💰</div>
-              <h3 className="mt-3 text-stone-900 font-semibold">Total Project Cost</h3>
-              <p className="mt-1 text-stone-700 text-sm">₹10–12 Lakh (Incl. Franchise Fee)</p>
+
+              {/* Large Image Section */}
+              <div className="relative h-32 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                  alt="Total Project Cost - Financial planning"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1">
+                  <span className="text-stone-800 font-semibold text-sm">Investment</span>
+                </div>
+              </div>
+
+              {/* Content Section */}
+              <div className="p-6">
+                <h3 className="text-lg font-bold text-stone-900 mb-4 group-hover:text-rose-900 transition-colors">Total Project Cost</h3>
+                <div className="space-y-3">
+                  <div className="bg-gradient-to-r from-rose-50 to-pink-50 p-3 rounded-lg">
+                    <p className="text-stone-700 font-medium text-sm">₹3–12 Lakh</p>
+                    <p className="text-stone-500 text-xs">(Incl. Franchise Fee)</p>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <span className="text-stone-500 text-sm font-medium">OR</span>
+                  </div>
+                  <div className="bg-gradient-to-r from-amber-50 to-orange-50 p-3 rounded-lg">
+                    <p className="text-stone-700 font-medium text-sm">₹15–30 Lakh</p>
+                    <p className="text-stone-500 text-xs">(Incl. Franchise Fee)</p>
+                  </div>
+                </div>
+              </div>
             </motion.div>
 
-            <motion.div whileHover={{ y: -4 }} className="relative rounded-2xl border border-amber-200 bg-white p-6 shadow-sm overflow-hidden">
+            <motion.div whileHover={{ y: -8, scale: 1.02 }} className="group relative rounded-2xl border border-amber-200 bg-white shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
               <div className="absolute -top-6 -right-6 h-20 w-20 bg-amber-200/40 rounded-full blur-2xl" />
-              <div className="text-3xl">📈</div>
-              <h3 className="mt-3 text-stone-900 font-semibold">ROI</h3>
-              <p className="mt-1 text-stone-700 text-sm">Up to 200%</p>
+
+              {/* Large Image Section */}
+              <div className="relative h-32 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                  alt="ROI - Return on investment growth"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1">
+                  <span className="text-stone-800 font-semibold text-sm">Growth</span>
+                </div>
+              </div>
+
+              {/* Content Section */}
+              <div className="p-6">
+                <h3 className="text-lg font-bold text-stone-900 mb-4 group-hover:text-rose-900 transition-colors">Return on Investment</h3>
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg text-center">
+                  <p className="text-2xl font-bold text-green-700 mb-1">Up to 200%</p>
+                  <p className="text-stone-600 text-sm">ROI Potential</p>
+                </div>
+              </div>
             </motion.div>
 
-            <motion.div whileHover={{ y: -4 }} className="relative rounded-2xl border border-rose-200 bg-white p-6 shadow-sm overflow-hidden">
+            <motion.div whileHover={{ y: -8, scale: 1.02 }} className="group relative rounded-2xl border border-rose-200 bg-white shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
               <div className="absolute -top-6 -right-6 h-20 w-20 bg-rose-200/40 rounded-full blur-2xl" />
-              <div className="text-3xl">👩‍🏫</div>
-              <h3 className="mt-3 text-stone-900 font-semibold">Teacher : Child Ratio</h3>
-              <p className="mt-1 text-stone-700 text-sm">1 : 15</p>
+
+              {/* Large Image Section */}
+              <div className="relative h-32 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                  alt="Teacher to Child Ratio - Quality education"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1">
+                  <span className="text-stone-800 font-semibold text-sm">Quality</span>
+                </div>
+              </div>
+
+              {/* Content Section */}
+              <div className="p-6">
+                <h3 className="text-lg font-bold text-stone-900 mb-4 group-hover:text-rose-900 transition-colors">Teacher : Child Ratio</h3>
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg text-center">
+                  <p className="text-2xl font-bold text-blue-700 mb-1">1 : 15</p>
+                  <p className="text-stone-600 text-sm">Optimal Learning Environment</p>
+                </div>
+              </div>
             </motion.div>
           </div>
 
-          <div className="mt-10 rounded-2xl bg-white border border-amber-100 shadow-sm overflow-hidden">
+          <div className="mt-12 rounded-2xl bg-white border border-amber-100 shadow-lg overflow-hidden">
             <div className="p-6 md:p-8">
-              <h4 className="text-lg font-semibold text-amber-800">Additional Revenue Programs</h4>
-              <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <h4 className="text-xl font-bold text-amber-800 mb-6 text-center">Additional Revenue Programs</h4>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[
                   "Toddler Programme",
                   "Summer Camp",
@@ -223,10 +443,16 @@ export default function ClientFranchisePreschoolPage() {
                   "Teacher Training Programme",
                   "Extended Day Care (EDC)",
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 rounded-lg border border-amber-100 bg-amber-50/40 px-4 py-3 text-sm text-stone-800">
-                    <span className="text-amber-700">✳️</span>
-                    <span>{item}</span>
-                  </div>
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.05 }}
+                    className="group relative bg-gradient-to-br from-amber-50 to-orange-50 p-4 rounded-xl border border-amber-100 hover:border-amber-300 transition-all duration-300 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 bg-gradient-to-r from-rose-500 to-amber-500 rounded-full group-hover:scale-125 transition-transform"></div>
+                      <span className="font-medium text-stone-800 group-hover:text-rose-900 transition-colors">{item}</span>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -237,10 +463,64 @@ export default function ClientFranchisePreschoolPage() {
       {/* ---------------- STEPS SECTION ---------------- */}
       <section className="py-16 bg-white">
         <h2 className="text-center text-3xl md:text-4xl font-extrabold text-transparent bg-gradient-to-r from-rose-900 to-amber-700 bg-clip-text mb-10">
-          Steps to Open a Preschool Franchise
+          Steps to Open a Samagra Balvatika
         </h2>
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+          {/* Mobile Layout - Vertical Stack */}
+          <div className="md:hidden space-y-8">
+            {steps.map((step, i) => (
+              <div key={i} className="flex items-center gap-4">
+                {/* Circle Card with Flip */}
+                <motion.div
+                  className="relative h-20 w-20 rounded-full shadow-lg overflow-hidden group flex-shrink-0"
+                  style={{ perspective: 1000 }}
+                >
+                  <motion.div
+                    className="absolute inset-0"
+                    style={{ transformStyle: "preserve-3d" }}
+                    initial={{ rotateY: 0 }}
+                    whileHover={{ rotateY: 180 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    {/* Front */}
+                    <div
+                      className="absolute inset-0"
+                      style={{ backfaceVisibility: "hidden" }}
+                    >
+                      <div className="absolute inset-0 rounded-full overflow-hidden">
+                        <img
+                          src={step.img}
+                          alt={step.title}
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                    </div>
+                    {/* Back */}
+                    <div
+                      className="absolute inset-0 flex items-center justify-center rounded-full bg-gradient-to-br from-amber-50 to-rose-50 px-2 text-center"
+                      style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                    >
+                      <p className="text-xs font-semibold text-stone-800">
+                        Step {i + 1}
+                      </p>
+                    </div>
+                  </motion.div>
+                </motion.div>
+
+                {/* Content */}
+                <div className="flex-1">
+                  <h3 className="font-bold text-stone-900 mb-1">{step.title}</h3>
+                  <div className="w-full bg-gradient-to-r from-amber-200 to-rose-200 h-1 rounded-full">
+                    <div className="bg-gradient-to-r from-amber-500 to-rose-500 h-1 rounded-full transition-all duration-1000"
+                         style={{ width: i === steps.length - 1 ? '100%' : `${((i + 1) / steps.length) * 100}%` }}></div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Layout - Horizontal */}
+          <div className="hidden md:flex md:items-center md:justify-between gap-8">
             {steps.map((step, i) => (
               <div key={i} className="flex items-center gap-8 md:gap-6">
                 {/* Circle Card with Flip */}
@@ -295,14 +575,6 @@ export default function ClientFranchisePreschoolPage() {
                   </div>
                 )}
               </div>
-            ))}
-          </div>
-          {/* Labels on mobile below circles */}
-          <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 md:hidden">
-            {steps.map((step, i) => (
-              <p key={i} className="text-center text-xs font-medium text-stone-700">
-                {step.title}
-              </p>
             ))}
           </div>
         </div>

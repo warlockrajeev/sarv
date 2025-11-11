@@ -380,8 +380,8 @@ export default function Client360EdTechPage() {
       </section>
 
       {/* ED-TECH SOLUTIONS SECTION */}
-      <section id="solutions" className="py-16 bg-gradient-to-b from-white via-orange-50 to-white overflow-x-hidden">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="solutions" className="py-16 bg-gradient-to-b from-orange-50 via-amber-50 to-white overflow-x-hidden">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.h2
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -401,76 +401,79 @@ export default function Client360EdTechPage() {
             Everything Your School Needs for Digital Transformation
           </motion.p>
 
-          <div className="grid md:grid-cols-7 gap-6">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="md:col-span-2 flex flex-col space-y-3"
-            >
-              {Object.keys(categories).map((category, index) => (
-                <motion.button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  whileHover={{ scale: 1.03, x: 5 }}
-                  whileTap={{ scale: 0.98 }}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {Object.entries(categories).map(([categoryName, items], index) => (
+              <motion.div
+                key={categoryName}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl p-6 border border-amber-100 hover:border-amber-300 transition-all duration-300"
+              >
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`text-left px-5 py-3 font-semibold rounded-lg transition-all duration-300 shadow-sm ${
-                    activeCategory === category
-                      ? "bg-gradient-to-r from-rose-900 to-amber-700 text-white shadow-lg transform scale-105"
-                      : "bg-white text-gray-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-amber-50 hover:shadow-md border border-gray-200"
-                  }`}
+                  transition={{ delay: index * 0.1 + 0.1, type: "spring" }}
+                  className="w-full h-32 mb-4 rounded-xl overflow-hidden bg-gradient-to-br from-orange-100 to-amber-100"
                 >
-                  {category}
-                </motion.button>
-              ))}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="md:col-span-5 bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100 p-8 rounded-2xl shadow-xl border border-orange-200"
-            >
-              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {categories[activeCategory].map((item, i) => (
+                  <img
+                    src={
+                      categoryName === 'STEM & ROBOTICS' ? 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                      categoryName === 'AI & MACHINE LEARNING' ? 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                      categoryName === 'AR/VR LAB' ? 'https://miro.medium.com/v2/resize:fit:2000/format:webp/1*R85NjcjYmtuuVVhIRimU7g.jpeg' :
+                      categoryName === 'SMART CLASSROOMS' ? 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                      categoryName === 'LEARNING MANAGEMENT SYSTEM' ? 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                      categoryName === 'CODING & PROGRAMMING' ? 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                      categoryName === 'DIGITAL CURRICULUM' ? 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' :
+                      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+                    }
+                    alt={categoryName}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+                <div className="flex items-center gap-3 mb-4">
                   <motion.div
-                    key={`${activeCategory}-${i}`}
-                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{
-                      delay: i * 0.08,
-                      type: "spring",
-                      stiffness: 100,
-                      damping: 10
-                    }}
-                    whileHover={{
-                      scale: 1.05,
-                      y: -5,
-                      boxShadow: "0 10px 25px rgba(242, 101, 34, 0.2)"
-                    }}
-                    className="bg-white shadow-md hover:shadow-xl p-5 rounded-xl text-sm font-medium transition-all duration-300 border border-orange-100 hover:border-orange-300 cursor-pointer group"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 + 0.2, type: "spring" }}
+                    className="w-10 h-10 rounded-xl bg-gradient-to-r from-rose-900 to-amber-700 flex items-center justify-center shadow-md"
                   >
-                    <div className="flex items-center gap-2">
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: i * 0.08 + 0.2 }}
-                        className="w-2 h-2 rounded-full bg-gradient-to-r from-rose-900 to-amber-700 group-hover:scale-150 transition-transform"
-                      />
-                      <span className="text-gray-800 group-hover:text-[#f26522] transition-colors">
-                        {item}
-                      </span>
-                    </div>
+                    <span className="text-white font-bold text-lg">
+                      {categoryName.split(' ')[0][0]}{categoryName.split(' ')[1]?.[0] || ''}
+                    </span>
                   </motion.div>
-                ))}
-              </div>
-            </motion.div>
+                  <h3 className="font-bold text-lg text-gray-800 leading-tight">
+                    {categoryName}
+                  </h3>
+                </div>
+
+                <ul className="space-y-2">
+                  {items.map((item, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 + i * 0.05 }}
+                      className="flex items-start gap-2 text-sm text-gray-700"
+                    >
+                      <motion.span
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 + i * 0.05 + 0.1, type: "spring" }}
+                        className="w-2 h-2 rounded-full bg-gradient-to-r from-rose-900 to-amber-700 mt-1.5 flex-shrink-0"
+                      />
+                      <span className="leading-relaxed">{item}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

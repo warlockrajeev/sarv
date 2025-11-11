@@ -3,12 +3,12 @@
 import { motion } from "framer-motion";
 
 const items = [
-  { title: "English Language Lab", text: "Master communication with confidence." },
-  { title: "Math Lab", text: "Discover the beauty of mathematics through hands-on learning." },
-  { title: "Smart Class Solutions", text: "Elevate teaching with the latest technology." },
-  { title: "Science Labs", text: "Make science tangible and exciting." },
-  { title: "Geography Lab", text: "Navigate the wonders of our world." },
-  { title: "AI & Robotics Lab", text: "Explore the frontiers of technology." },
+  { title: "English Language Lab", text: "Master communication with confidence.", image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+  { title: "Math Lab", text: "Discover the beauty of mathematics through hands-on learning.", image: "https://images.unsplash.com/photo-1509228468518-180dd4864904?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+  { title: "Smart Class Solutions", text: "Elevate teaching with the latest technology.", image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+  { title: "Science Labs", text: "Make science tangible and exciting.", image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+  { title: "Geography Lab", text: "Navigate the wonders of our world.", image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+  { title: "AI & Robotics Lab", text: "Explore the frontiers of technology.", image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
 ];
 
 export default function LabSolutions() {
@@ -66,8 +66,23 @@ export default function LabSolutions() {
                 boxShadow: "0 15px 40px rgba(0,0,0,0.12)",
               }}
               whileTap={{ scale: 0.95 }}
-              className="group relative overflow-hidden rounded-2xl bg-white border border-amber-100 p-10 shadow-md transition-all duration-700 ease-in-out"
+              className="group relative overflow-hidden rounded-2xl bg-white border border-amber-100 p-6 shadow-md transition-all duration-700 ease-in-out"
             >
+              {/* Image */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1, type: "spring" }}
+                className="w-full h-32 mb-4 rounded-xl overflow-hidden bg-gradient-to-br from-orange-100 to-amber-100"
+              >
+                <img
+                  src={it.image}
+                  alt={it.title}
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+
               {/* Background overlay on hover */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-br from-rose-900/5 via-transparent to-amber-800/5 opacity-0 group-hover:opacity-100 transition-all duration-700"
